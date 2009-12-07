@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Tadpole :: Friends</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+        <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
+        <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script>
+		<script type="text/javascript" src="lib/prototype/prototype.js"></script>
+		<script type="text/javascript" src="lib/scriptaculous/scriptaculous.js"></script>
+		<script type="text/javascript" src="lib/scriptaculous/effects.js"></script>
+		<script type="text/javascript" src="lib/tadpole.js"></script>
+        <script type="text/javascript">
+            // AIR-related functions created by the developer
+            
+			var session = {
+				authToken: readLocalFile()		
+			};
+			
+            // reads the content of a local text file
+            function readLocalFile(){
+                var f = air.File.applicationStorageDirectory.resolvePath("pond.txt");
+				
+                var fs = new air.FileStream();
+                fs.open(f, air.FileMode.READ);
+                var content = fs.readUTFBytes(fs.bytesAvailable);
+                fs.close();
+                
+                return content;
+            }
+			
+			var friends = [];
+			
+            function getUserData(){
+				var params = {
+					AuthToken: session.authToken
+				};
+				new Ajax.Request("http://services.sapo.pt/Pond/GetUserJSON",{
+					method: 'get',
+					parameters: params,
+					onComplete: function(r){
+						var data = r.responseJSON.Response.User;
+						$('name').innerHTML = data.Name;
+						$('username').innerHTML = data.Username;
+						$('email').innerHTML = data.Email;
+						$('birth_date').innerHTML = data.DateOfBirth;
+						$('work').innerHTML = data.Occupation;
+						$('country').innerHTML = data.Country;
+					}
+				});		
+			}
+            
+       </script>
+    </head>
+    <body id="me" onload="getUserData()">
+    	<div id="status-messages" style="display: none;">
+			<ul>
+				<li class="error">Error Error Error Error Error Error Error Error Error Error Error Error Error Error</li>
+				<li class="warning">Warning Warning Warning Warning Warning Warning Warning Warning Warning Warning Warning</li>
+				<li class="info">Info Info Info Info Info Info Info Info Info Info Info Info Info Info Info Info Info</li>
+			</ul>
+    	</div>
+    	<div id="topbar" onclick="toggleEffect($('status-messages')); return false;" style="cursor: pointer">
+    		<p class="left">x Messages</p>
+			<p class="right"><img src="img/world_connect.png" alt="status" title="online" /></p>
+    	</div>
+		<div id="contents-wrapper">
+			<div id="contents">
+				<div class="entry">
+					<div class="left-side">
+						<a href="#username"></a>
+					</div>
+					<div class="text-wrapper">
+						<div class="header"><a href="#username"><span id="username"></span></a></div>
+						<div class="text">
+							<ul class="details">
+								<li class="username"><span class="title">Nome:</span> <span id="name"></span></li>
+								<li class="email"><span class="title">EMail:</span> <span id="email"></span></li>
+								<li class="birthdate"><span class="title">Data de Nascimento:</span> <span id="birth_date"></span></li>
+								<li class="ocupation"><span class="title">Ocupação:</span> <span id="work"></span></li>
+								<li class="country"><span class="title">País:</span> <span id="country"></span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="main-menu-wrapper closed">
+			<a href="#menu" class="main-menu-link" onclick="toggleEffect($('mainOptions')); return false;">Menu</a>
+			<div id="mainOptions" class="main-menu-options" style="display: none">
+				<ul>
+					<li class="publish"><a href="publish.html">Publish</a></li>
+					<li class="timeline"><a href="timeline.html">Timeline</a></li>
+					<li class="me"><a href="me.html">Me</a></li>
+					<li class="friends-list"><a href="friends.html">FriendsList</a></li>
+					<li class="logout"><a href="logout.html">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

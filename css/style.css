@@ -1,0 +1,572 @@
+@font-face {
+	font-family: 'DroidSansRegular';
+	src: url('DroidSans.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DroidSansBold';
+	src: url('DroidSans-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DroidSerifRegular';
+	src: url('DroidSerif-Regular.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DroidSerifItalic';
+	src:url('DroidSerif-Italic.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DroidSerifBold';
+	src: url('DroidSerif-Bold.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DroidSerifBoldItalic';
+	src:url('DroidSerif-BoldItalic.ttf') format('truetype');
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+/* tables still need 'cellspacing="0"' in the markup */
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Real CSS starts here! */
+
+body {
+	font-family: "DroidSerifRegular";
+	font-size: 12px;
+	background: #2a1500;
+	color: #f8f8f8;
+	min-width: 370px;
+}
+
+a:link,
+a:visited {
+	color: #f8f8f8;
+	text-decoration: underline;
+}
+
+a:hover,
+a:active {
+	color: #d8d8d8;
+	text-decoration: none;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+#topbar,
+#status-messages {
+	background: #c0c0c0;
+}
+
+#topbar {
+	background: #c0c0c0;
+	min-height: 20px;
+	-webkit-box-shadow: 0 5px 8px #0e0700;
+}
+
+#topbar p {
+	line-height: 20px;
+	padding-left: 12px;
+	padding-right: 8px;
+}
+
+#topbar p img {
+	padding-top: 2px;
+}
+
+#status-messages {
+	border-bottom: 1px solid rgb(220,220,220);
+	padding-bottom: 6px;
+	padding-top: 4px;
+}
+
+#status-messages h2 {
+	padding-left: 12px;
+}
+
+#status-messages ul li {
+	padding-left: 18px;
+	margin-left: 12px;
+	line-height: 18px;
+}
+
+#status-messages ul li.error {
+	background: url("../img/exclamation.png") top left no-repeat;
+}
+
+#status-messages ul li.warning {
+	background: url("../img/error.png") top left no-repeat;
+}
+
+#status-messages ul li.info {
+	background: url("../img/information.png") top left no-repeat;
+}
+
+#contents-wrapper {
+	margin: 8px 12px 48px 12px;
+	padding: 4px 6px;
+}
+
+#login-form {
+	padding: 4px 0;
+	background: rgba(0,0,0,0.3);
+	border: 1px solid rgba(0,0,0,0.2);
+}
+
+form#login-form {
+	margin: 0 auto;
+	width: 300px;
+	text-align: right;
+}
+
+form#login-form input {
+	margin-right: 6px;
+	margin-bottom: 8px;
+}
+
+input,
+textarea {
+	border: 1px solid rgba(0,0,0,0.8);
+	color: #555753;
+}
+
+input:focus,
+textarea:focus {
+	color: #222421;
+	outline: 2px solid rgba(144,133,239,0.8);
+}
+
+input.button {
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	-webkit-border-radius: 8px;
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(34, 34, 34)), to(rgb(40, 40, 40)));
+	display: inline-block;
+	padding: 5px 10px 6px 10px;
+	color: #ffffff !important;
+	text-decoration: none;
+	font-weight: Bold;
+	line-height: 1;
+	cursor: pointer;
+	border: none !important;
+}
+
+input.button:hover {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(34, 34, 34)), to(rgb(58, 58, 58)));
+}
+
+input.button:active {
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgb(14, 14, 14)), to(rgb(40, 40, 40)));
+}
+
+form#login-form h1 {
+	text-align: left;
+	font-size: 18px;
+	padding-left: 6px;
+	padding-bottom: 4px;
+	margin-bottom: 8px;
+	border-bottom: 1px solid rgba(0,0,0,0.3); 
+}
+
+.entry {
+	margin-bottom: 24px;
+}
+
+.entry .avatar {
+	-webkit-box-shadow: 3px 5px 8px rgba(0,0,0,0.5);
+	border: 1px solid #111111;
+}
+
+.entry .text-wrapper {
+	-webkit-border-radius: 12px;
+	border: 1px solid rgba(0,0,0,0.4);
+	background: #392614;
+	padding: 6px 10px 6px 24px;
+	margin-left: 28px;
+	margin-top: 16px;
+}
+
+.entry .text {
+	min-height: 55px;
+	padding-left: 6px;
+	padding-top: 4px;
+	line-height: 1.2em;
+	word-wrap: break-word;
+}
+
+.entry .left-side {
+	float: left;
+	margin-top: -14px;
+}
+
+.entry .options a {
+	opacity: 0.4;
+}
+
+.entry .options a:hover {
+	opacity: 1;
+}
+
+.entry .options a:active {
+	opacity: 0.7;
+}
+
+.entry .options {
+	margin-left: 5px;
+	padding-left: 4px;
+	padding-top: 18px;
+	margin-top: -8px;
+	padding-bottom: 4px;
+	background: #221100;
+	border: 1px solid #554433;
+	-webkit-border-bottom-left-radius: 8px;
+	border-right: none;
+	width: 19px;
+}
+
+.entry .meta {
+	text-align: right;
+	vertical-align: baseline;
+	font-style: italic;
+	font-family: "DroidSerifItalic";
+	color: #644526;
+	padding-top: 4px;
+	line-height: 16px;
+}
+
+.publish-area .services label {
+	display: inline-block;
+	line-height: 16px;
+	margin-right: 10px;
+}
+
+.publish-area .services input {
+	vertical-align: text-bottom;
+}
+
+.entry.twitter .meta,
+.publish-area .twitter {
+	padding-right: 20px;
+	background: url("../img/twitter.png") bottom right no-repeat;
+}
+
+.entry.facebook .meta,
+.publish-area .facebook {
+	padding-right: 20px;
+	background: url("../img/facebook.png") bottom right no-repeat;
+}
+
+.entry.youtube .meta,
+.publish-area .youtube {
+	padding-right: 20px;
+	background: url("../img/youtube.png") bottom right no-repeat;
+}
+
+.entry.flickr .meta,
+.publish-area  .flickr {
+	padding-right: 20px;
+	background: url("../img/flickr.png") bottom right no-repeat;
+}
+
+.entry.sapovideos .meta,
+.publish-area .sapovideos,
+.entry.sapofotos .meta,
+.publish-area .sapofotos {
+	padding-right: 20px;
+	background: url("../img/sapo.png") bottom right no-repeat;
+}
+
+.entry.rss .meta,
+.publish-area .rss {
+	padding-right: 20px;
+	background: url("../img/feed.png") bottom right no-repeat;
+}
+
+.entry .header {
+	font-family: "DroidSerifBold";
+	font-weight: bold;
+	font-size: 0.92em;
+	line-height: 1.1em;
+	margin-top: -16px;
+	margin-bottom: 4px;
+	padding-left: 2px;
+}
+
+.filters {
+	width: 140px;
+	margin: 0 -18px 0 auto;
+	padding: 4px 18px 4px 12px;
+	background: rgb(99,67,36);
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+}
+
+.filters .title {
+	margin-bottom: 2px;
+}
+
+.filters ul.filter-list li {
+	display: inline;
+}
+
+.filters li.deselected {
+	opacity: 0.5;
+}
+
+.main-menu-wrapper {
+	position: fixed;
+	bottom: 0;
+	margin: 0 auto;
+	text-align: center;
+	width: 100%;
+	clear:both;
+	min-width: 390px;
+}
+
+.main-menu-options {
+	background: #c0c0c0;
+	min-width: 80px;
+	min-height: 50px;
+	max-height: 102px;
+	margin: 0 auto;
+	border-top: 1px solid #a0a0a0;
+	font-size: 0.8em;
+}
+
+.main-menu-options ul {
+	display: inline;
+}
+
+.main-menu-options li {
+	display: inline-block;
+}
+
+.main-menu-options li:first-child {
+	border-left: 1px solid #a0a0a0;
+}
+
+.main-menu-options li a {
+	display: block;
+	min-width: 60px;
+	padding-top: 34px;
+	height: 16px;
+	border-right: 1px solid #a0a0a0;
+	margin-left: -4px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+
+.main-menu-options li a,
+a.main-menu-link,
+#friends .selectors li a {
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+a.main-menu-link {
+	display: block;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	margin: 0 auto;
+	background: #c0c0c0;
+	width: 80px;
+	padding: 5px 0;
+	border: 1px solid #a0a0a0;
+	border-bottom: none;
+}
+
+.closed a.main-menu-link {
+	/*opacity: 0.15;*/
+}
+
+a.main-menu-link:hover {
+	opacity: 1.0;
+}
+
+a.main-menu-link:hover,
+.main-menu-options li a:hover {
+	background: #a0a0a0;
+}
+
+.main-menu-options li a,
+.main-menu-options li a:hover {
+	background-position: center 30%;
+	background-repeat: no-repeat;
+}
+
+.main-menu-options li.publish a {
+	background-image: url("../img/09-chat2.png");
+}
+
+.main-menu-options li.timeline a {
+	background-image: url("../img/40-inbox.png");
+}
+
+.main-menu-options li.friends-list a {
+	background-image: url("../img/67-tshirt.png");
+}
+
+.main-menu-options li.me a {
+	background-image: url("../img/53-house.png");
+}
+
+.main-menu-options li.logout a {
+	background-image: url("../img/63-runner.png");
+}
+
+.publish-area {
+	width: 95%;
+	background: rgba(0,0,0,0.3);
+	-webkit-border-radius: 5px;
+	padding: 12px 12px 34px 12px;
+	margin: 5px auto 0 auto;
+	position: relative;
+	bottom: 14px;
+	text-align: center;
+}
+
+.publish-area .button {
+	display: block;
+	float: right;
+	margin-right: 1%;
+}
+
+.publish-area .services {
+	float: left;
+	padding-left: 0.8%;
+	padding-top: 4px;
+}
+
+.publish-area .content {
+	width: 98%;
+	height: 50px;
+	margin-bottom: 4px;
+}
+
+#friends .selectors {
+	float: right;
+	width: 28px;
+	margin-right: -37px;
+	border-bottom: 1px solid #0f0800;
+	margin-bottom: 40px;
+	margin-top: -12px;
+}
+
+#friends #contents {
+	margin-right: 45px;
+	padding-right: 8px;
+	min-height: 602px;
+}
+
+#friends .selectors li {
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 1.1em;
+	background: rgba(0,0,0,0.4);
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+}
+
+#friends .selectors li.selected {
+	background: rgba(255,255,255,0.4);
+}
+
+.entry .services p {
+	margin-bottom: 4px;
+}
+
+.entry ul li {
+	margin-bottom: 4px;
+}
+
+.entry .title {
+	font-style: italic;
+}
+
+#friends .entry .services ul,
+#friends .entry .services li {
+	display: inline;
+}
+
+#me .details li {
+	padding-left: 20px;
+	line-height: 18px;
+}
+
+#me .details .username {
+	background: url('../img/user.png') no-repeat top left;
+}
+
+#me .details .email {
+	background: url('../img/email.png') no-repeat top left;
+}
+
+#me .details .birthdate {
+	background: url('../img/date.png') no-repeat top left;
+}
+
+#me .details .ocupation {
+	background: url('../img/vcard.png') no-repeat top left;
+}
+
+#me .details .country {
+	background: url('../img/world.png') no-repeat top left;
+}

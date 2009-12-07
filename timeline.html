@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    	<title>Tadpole :: Timeline</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+        <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
+        <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script>
+		<script type="text/javascript" src="lib/prototype/prototype.js"></script>
+		<script type="text/javascript" src="lib/scriptaculous/scriptaculous.js"></script>
+		<script type="text/javascript" src="lib/scriptaculous/effects.js"></script>
+		<script type="text/javascript" src="lib/tadpole.js"></script>
+        <script type="text/javascript">
+        	
+			
+            // AIR-related functions created by the developer
+            
+			var twitterEntry = '<div class="entry twitter">'+
+				'<div class="left-side">'+
+					'<a href="#username"><img src="{avatar}" width="48" height="48" title="{username}" class="avatar" /></a>'+
+					'<div class="options">'+
+						'<ul>'+
+							'<li><a href="publish.html#@{username}" title="reply"><img src="img/arrow_redo.png" title="Responder" /></a></li>'+
+						'</ul>'+
+					'</div>'+
+				'</div>'+
+				'<div class="text-wrapper">'+
+					'<div class="header"><a href="#username">{name}</a> (service: <a href="#username">@{username}</a>)</div>'+
+					'<div class="text">{text}</div>'+
+					'<div class="meta">{data}</div>'+
+				'</div>'+
+			'</div>';
+			var facebookEntry = '<div class="left-side">'+
+					'<a href="#username"><img src="{avatar}" width="48" height="48" title="{username}" class="avatar" /></a>'+
+					'<div class="options">'+
+						'<ul>'+
+							'<li><a href="publish.html#@{username}" title="reply"><img src="img/arrow_redo.png" title="Responder" /></a></li>'+
+						'</ul>'+
+					'</div>'+
+				'</div>'+
+				'<div class="text-wrapper">'+
+					'<div class="header"><a href="#username">{name}</a> (service: <a href="#username">{username}</a>)</div>'+
+					'<div class="text">{text}</div>'+
+					'<div class="meta">{data}</div>'+
+				'</div>';
+			
+			var session = {
+				authToken: readLocalFile(),
+				initialCount: 100			
+			};
+			
+            // reads the content of a local text file
+            function readLocalFile(){
+                var f = air.File.applicationStorageDirectory.resolvePath("pond.txt");
+				
+                var fs = new air.FileStream();
+                fs.open(f, air.FileMode.READ);
+                var content = fs.readUTFBytes(fs.bytesAvailable);
+                fs.close();
+                
+                return content;
+            }
+			
+			var events = [];
+			
+            function getTimeline(){
+				new Ajax.Request("http://services.sapo.pt/Pond/ListEventsJSON",{
+					method: 'get',
+					parameters: {
+						AuthToken: session.authToken,
+						RowsPage: session.initialCount
+					},
+					onComplete: function(r){
+						if(r.responseJSON && r.responseJSON.Response && r.responseJSON.Response.Events){
+							events = r.responseJSON.Response.Events;
+							insertEvents();
+						}
+					}
+				});
+								
+			}
+			
+			function insertEvents(){			
+				
+				var _len = 1;
+				var length = events.length;
+				var div;
+				var event;
+				var entry;
+				var container = $("contents");
+
+				while(_len++){
+					if(_len > length){return;} 
+					event = events[_len-1].Event;
+					div = document.createElement("div");
+					div.id = "event_" + event.EventID;
+					if(event.ServiceID!="1"){
+						div.className = "entry facebook";
+						entry = facebookEntry;
+					} else {
+						div.className = "entry twitter";
+						entry = twitterEntry;
+					}
+					div.innerHTML = entry.replace("{data}",event.PublishedAt).replace("{avatar}",event.AvatarURL).replace(/\{username\}/g,event.AuthorScreenName).replace("{text}",event.TruncatedData).replace("{name}",event.Name);
+					container.appendChild(div);
+
+				}			
+			}
+            
+			
+			
+			  
+        </script>
+	</head>
+
+    <body onload="getTimeline()">
+       	<div id="status-messages" style="display: none;">
+			<ul>
+				<li class="error"></li>
+				<li class="warning"></li>
+				<li class="info"></li>
+			</ul>
+    	</div>
+    	<div id="topbar" onclick="toggleEffect($('status-messages')); return false;" style="cursor: pointer">
+    		<p class="left">x Messages</p>
+			<p class="right"><img src="img/world_connect.png" alt="status" title="online" /></p>
+    	</div>
+		<div id="contents-wrapper">
+			<div id="contents">
+				<div class="filters">
+					<p class="title">Filtros:</p>
+					<ul class="filter-list">
+						<li class="deselected"><a href="#twitter" title="Twitter"><img src="img/twitter.png" /></a></li>
+						<li><a href="#facebook" title="Facebook"><img src="img/facebook.png" /></a></li>
+						<li><a href="#youtube" title="YouTube"><img src="img/youtube.png" /></a></li>
+						<li><a href="#flickr" title="Flickr"><img src="img/flickr.png" /></a></li>
+						<li><a href="#sapovideos" title="Sapo Videos"><img src="img/sapo.png" /></a></li>
+						<li><a href="#sapofotos" title="Sapo Fotos"><img src="img/sapo.png" /></a></li>
+						<li><a href="#rss" title="RSS"><img src="img/feed.png" /></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main-menu-wrapper closed">
+			<a href="#menu" class="main-menu-link" onclick="toggleEffect($('mainOptions')); return false;">Menu</a>
+			<div id="mainOptions" class="main-menu-options" style="display: none">
+				<ul>
+					<li class="publish"><a href="publish.html">Publish</a></li>
+					<li class="timeline"><a href="timeline.html">Timeline</a></li>
+					<li class="me"><a href="me.html">Me</a></li>
+					<li class="friends-list"><a href="friends.html">FriendsList</a></li>
+					<li class="logout"><a href="logout.html">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+    </body>
+</html>

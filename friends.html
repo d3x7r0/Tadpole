@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    	<title>Tadpole :: FriendList</title>
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+        <script type="text/javascript" src="lib/air/AIRAliases.js"></script>
+        <script type="text/javascript" src="lib/air/AIRLocalizer.js"></script>
+		<script type="text/javascript" src="lib/prototype/prototype.js"></script>
+		<script type="text/javascript" src="lib/scriptaculous/scriptaculous.js"></script>
+		<script type="text/javascript" src="lib/scriptaculous/effects.js"></script>
+		<script type="text/javascript" src="lib/tadpole.js"></script>
+        <script type="text/javascript">
+            // AIR-related functions created by the developer
+        
+		
+			var entry = '<div class="left-side">'+
+						'<a href="#username"><img src="{avatar}" width="48" height="48" title="{username}" class="avatar" /></a>'+
+					'</div>'+
+					'<div class="text-wrapper">'+
+						'<div class="header"><a href="#username">{name}</a></div>'+
+						'<div class="text">'+
+							'<div class="services">'+
+								'<p class="title">Services:</p>{services}'+
+							'</div>'+
+						'</div>'+
+					'</div>';
+					
+					
+			function showServices(options){
+				var ret = '<ul>';
+				
+				if(/1/.test(options)) ret += '<li><img src="img/twitter.png" title="Twitter" /></li>';
+				if(/6/.test(options)) ret += '<li><img src="img/facebook.png" title="Facebook" /></li>';
+				if(/3/.test(options)) ret += '<li><img src="img/flickr.png" title="Flickr" /></li>';
+				if(/4/.test(options)) ret += '<li><img src="img/youtube.png" title="YouTube" /></li>';
+				if(/2/.test(options)) ret += '<li><img src="img/sapo.png" title="Sapo Videos" /></li>';
+				if(/5/.test(options)) ret += '<li><img src="img/facebook.png" title="Facebook" /></li>';
+				
+				ret += '</ul>';
+
+				return ret;
+			}
+		
+		
+		
+		    
+			var session = {
+				authToken: readLocalFile()
+			};
+			
+			var friends = [];
+			var globLetter;
+			
+            function getFriends(letter){
+				globLetter = letter;
+				new Ajax.Request("http://services.sapo.pt/Pond/ListEntitiesJSON",{
+					method: 'get',
+					parameters: {
+						AuthToken: session.authToken,
+						FirstLetter: letter
+					},
+					onComplete: function(r){
+						if(r.responseJSON && r.responseJSON.Response && r.responseJSON.Response.Entities){
+							friends.length = 0;
+							friends = r.responseJSON.Response.Entities;
+							var container = $('selectors');
+							childs = container.childNodes;
+							
+							for(var _i=0, _len=childs.length; _i<_len ;_i++){
+								if (childs[_i].tagName && childs[_i].tagName == "LI") {
+									if (childs[_i].childNodes[0].innerHTML.replace(/ /g,"") != globLetter) {
+										childs[_i].className = '';
+									} else {
+										childs[_i].className = 'selected';
+									}
+								}
+							}
+							buildFriendsList();
+						}
+					}
+				});
+								
+			}
+			
+			function buildFriendsList(){
+				var _len = friends.length;
+				var div;
+				var _i = -1;
+				var friend;
+				var container = $("friends-list");
+				container.innerHTML = '';
+				while(_len > ++_i){
+					friend = friends[_i].Entity;
+					div = document.createElement("div");
+					div.id = "event_" + friend.EntityID;
+					div.className = "entry";
+					
+					div.innerHTML = entry.replace("{services}", showServices(friend.Services)).replace("{avatar}",friend.AvatarURL).replace("{username}",friend.Name).replace("{name}",friend.Name);
+					container.appendChild(div);
+				}
+			}
+            
+        </script>
+	</head>
+
+    <body id="friends" onload="getFriends('A')">
+        <div id="status-messages" style="display: none;">
+			<ul>
+				<li class="error">Error Error Error Error Error Error Error Error Error Error Error Error Error Error</li>
+				<li class="warning">Warning Warning Warning Warning Warning Warning Warning Warning Warning Warning Warning</li>
+				<li class="info">Info Info Info Info Info Info Info Info Info Info Info Info Info Info Info Info Info</li>
+			</ul>
+    	</div>
+    	<div id="topbar" onclick="toggleEffect($('status-messages')); return false;" style="cursor: pointer">
+    		<p class="left">x Messages</p>
+			<p class="right"><img src="img/world_connect.png" alt="status" title="online" /></p>
+    	</div>
+		<div id="contents-wrapper">
+			<div id="contents">
+				<ul id="selectors" class="selectors">
+					<li><a href="#numerical">#</a></li>
+					<li><a href="#a" onclick="getFriends('A')">A</a></li>
+					<li><a href="#b" onclick="getFriends('B')">B</a></li>
+					<li><a href="#c" onclick="getFriends('C')">C</a></li>
+					<li><a href="#d" onclick="getFriends('D')">D</a></li>
+					<li><a href="#e" onclick="getFriends('E')">E</a></li>
+					<li><a href="#f" onclick="getFriends('F')">F</a></li>
+					<li><a href="#g" onclick="getFriends('G')">G</a></li>
+					<li><a href="#h" onclick="getFriends('H')">H</a></li>
+					<li><a href="#i" onclick="getFriends('I')">I</a></li>
+					<li><a href="#j" onclick="getFriends('J')">J</a></li>
+					<li><a href="#k" onclick="getFriends('K')">K</a></li>
+					<li><a href="#l" onclick="getFriends('L')">L</a></li>
+					<li><a href="#m" onclick="getFriends('M')">M</a></li>
+					<li><a href="#n" onclick="getFriends('N')">N</a></li>
+					<li><a href="#o" onclick="getFriends('O')">O</a></li>
+					<li><a href="#p" onclick="getFriends('P')">P</a></li>
+					<li><a href="#q" onclick="getFriends('Q')">Q</a></li>
+					<li><a href="#r" onclick="getFriends('R')">R</a></li>
+					<li><a href="#s" onclick="getFriends('S')">S</a></li>
+					<li><a href="#t" onclick="getFriends('T')">T</a></li>
+					<li><a href="#u" onclick="getFriends('U')">U</a></li>
+					<li><a href="#v" onclick="getFriends('V')">V</a></li>
+					<li><a href="#W" onclick="getFriends('W')">W</a></li>
+					<li><a href="#X" onclick="getFriends('X')">X</a></li>
+					<li><a href="#Y" onclick="getFriends('Y')">Y</a></li>
+					<li><a href="#Z" onclick="getFriends('Z')">Z</a></li>
+				</ul>
+				<div id="friends-list">
+				</div>
+			</div>
+		</div>
+		
+		<div class="main-menu-wrapper closed">
+			<a href="#menu" class="main-menu-link" onclick="toggleEffect($('mainOptions')); return false;">Menu</a>
+			<div id="mainOptions" class="main-menu-options" style="display: none">
+				<ul>
+					<li class="publish"><a href="publish.html">Publish</a></li>
+					<li class="timeline"><a href="timeline.html">Timeline</a></li>
+					<li class="me"><a href="me.html">Me</a></li>
+					<li class="friends-list"><a href="friends.html">FriendsList</a></li>
+					<li class="logout"><a href="logout.html">Logout</a></li>
+				</ul>
+			</div>
+		</div>
+    </body>
+</html>
