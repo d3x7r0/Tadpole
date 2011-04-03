@@ -13,7 +13,7 @@
 }
 
 body {
-    font-family: Droid Sans, 'DroidSans';
+    font: 12px/1.3em Droid Sans, 'DroidSans';
     color: #ececec;
 }
 
@@ -52,7 +52,7 @@ a:focus {
     -webkit-border-top-left-radius: 5px;
     -webkit-border-top-right-radius: 5px;
     background: url('../img/topbg.png') bottom left repeat-x;
-    border-bottom: 1px solid #161616;
+    border-bottom: 1px solid #1a1a1a;
 }
 
 #statusbar {
@@ -60,11 +60,12 @@ a:focus {
     -webkit-border-bottom-left-radius: 5px;
     -webkit-border-bottom-right-radius: 5px;
     background: url('../img/topbg.png') top left repeat-x;
-    border-top: 1px solid #161616;
+    border-top: 1px solid #1a1a1a;
 }
 
 #contents {
-    padding: 50px 0 22px;
+	position: relative;
+    margin: 50px 0 46px;
 }
 
 #titlebar h1 {
@@ -74,6 +75,8 @@ a:focus {
     line-height: 1.3em;
     font-weight: bold;
     color: #ececec;
+	cursor: default;
+	margin-top: 4px;
 }
 
 #titlebar #windowOps,
@@ -81,7 +84,7 @@ a:focus {
     position: absolute;
     top: 0;
     padding: 0;
-    margin: 5px 5px 0;
+    margin: 4px 5px 0;
 }
 
 #titlebar #windowOps {
@@ -100,6 +103,13 @@ a:focus {
 
 #titlebar #contextMenuButton {
     left: 0;
+	background: url('../img/cog.png') bottom left no-repeat;
+}
+
+#titlebar #contextMenuButton:hover,
+#titlebar #contextMenuButton:active,
+#titlebar #contextMenuButton:focus {
+	background-position: top left;
 }
 
 .mac #titlebar #contextMenuButton {
@@ -113,22 +123,30 @@ a:focus {
     width: 14px;
     height: 14px;
     overflow: hidden;
+	text-indent: -9999px;
 }
 
 #titlebar #windowOps a {
-    font-style: monospace;
-    color: #515151;
-    background: #787878;
-    -webkit-border-radius: 7px;
-    font-size: 18px;
-    line-height: 0.9em;
-    text-align: center;
+	background-position: bottom left;
+	background-repeat: no-repeat;
+}
+
+#titlebar #windowOps #minimize a {
+	background-image: url('../img/minimize.png');
+}
+
+#titlebar #windowOps #maximize a {
+	background-image: url('../img/maximize.png');
+}
+
+#titlebar #windowOps #close a {
+	background-image: url('../img/close.png');
 }
 
 #titlebar #windowOps a:hover,
-#titlebar #windowOps a:active,
-#titlebar #windowOps a:focus {
-    color: #393939;
+#titlebar #windowOps a:focus,
+#titlebar #windowOps a:active {
+    background-position: top left;
 }
 
 #statusbar #resize-handle {
@@ -152,6 +170,10 @@ a:focus {
 
 #statusbar #status-info a {
     color: #909090;
+}
+
+#statusbar #status-info a:hover {
+	color: #fff;
 }
 
 #topnav {
@@ -195,5 +217,133 @@ a:focus {
 #topnav a:active,
 #topnav a:focus {
     color: #fff;
+	background: #343434;
+	padding-bottom: 1px;
 }
 
+#topnav a.active:hover,
+#topnav a.active:active,
+#topnav a.active:focus {
+	padding-bottom: 2px;
+}
+
+#bottom {
+	position: absolute;
+	bottom: 23px;
+	left: 0;
+	background #343434;
+	border-top: 1px solid #1a1a1a;
+	width: 100%;
+	height: 22px;
+}
+
+#bottom .filters {
+	padding: 3px 6px 3px 8px;
+}
+
+.filters .title {
+	display: inline-block;
+	margin: 0 3px 0 0;
+	padding: 0 0 2px 0;
+	font-weight: bold;
+	font-size: 11px;
+	line-height: 10px;
+	vertical-align: bottom;
+}
+
+.filters .title:after {
+	content: ':';
+}
+
+#bottom .filters  ul {
+	display: inline-block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: 16px;
+}
+
+#bottom .filters  ul li {
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	vertical-align: middle;
+	margin-right: 3px;
+}
+
+#bottom .filters  ul li a {
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	overflow: hidden;
+	opacity: 0.25;
+}
+
+#bottom .filters  ul li a.active {
+	opacity: 0.75;
+}
+
+#bottom .filters  ul li a:hover,
+#bottom .filters  ul li a:active,
+#bottom .filters  ul li a:focus {
+	opacity: 1;
+}
+
+#post-button {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	display: block;
+	height: 22px;
+	line-height: 22px;
+	font-weight: bold;
+	padding: 0 14px;
+	margin: 0;
+	color: #cbcbcb;
+	background: #454545;
+}
+
+#post-button:hover,
+#post-button:active,
+#post-button:focus {
+	color: #ececec;
+	background: #515151;
+}
+
+#scrollbar {
+	cursor: pointer;
+	position: absolute;
+	font-size: 14px;
+	right: 0;
+	top: 0;
+	margin: 10px 0;
+	min-height: 60px;
+	background: #0b3165;
+	color: #ececec;
+	width: 16px;
+	-webkit-border-top-left-radius: 4px;
+	-webkit-border-bottom-left-radius: 4px;
+	-webkit-box-shadow: -1px 3px 4px rgba(0,0,0,0.3);
+}
+
+#scrollbar:hover,
+#scrollbar:active,
+#scrollbar:focus {
+	color: #fff;
+	background: #21559c;
+}
+
+#scrollbar span {
+	position: absolute;
+	left: 4px;
+	-webkit-transform:rotate(90deg);
+}
+
+#scrollbar .top {
+	top: 0;
+}
+
+#scrollbar .bottom {
+	bottom: 2px;
+}
