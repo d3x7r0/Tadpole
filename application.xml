@@ -12,12 +12,11 @@
         <content>tadpole2.html</content>
         <visible>true</visible>
         <width>324</width>
-        <height>600</height>
+        <height>500</height>
         <maximizable>false</maximizable>
         <minimizable>true</minimizable>
         <resizable>true</resizable>
         <minSize>324 150</minSize>
-        <maxSize>324 3000</maxSize>
         <aspectRatio>portrait</aspectRatio>
         <systemChrome>none</systemChrome>
         <transparent>true</transparent>

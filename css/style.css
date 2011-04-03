@@ -37,6 +37,10 @@ a:focus {
     -webkit-border-radius: 5px;
 }
 
+.maximized #global {
+    -webkit-border-radius: none;
+}
+
 #titlebar,
 #statusbar {
     position: absolute;
@@ -45,6 +49,15 @@ a:focus {
     height: 22px;
     overflow: hidden;
     z-index: 999;
+}
+
+/* TODO: add some padding to the maximized state */
+.maximized #titlebar {
+
+}
+
+.maximized #statusbar {
+
 }
 
 #titlebar {
@@ -64,8 +77,11 @@ a:focus {
 }
 
 #contents {
-	position: relative;
-    margin: 50px 0 46px;
+    margin: 50px 0 48px;
+}
+
+#contents > div {
+    position: relative;
 }
 
 #titlebar h1 {
@@ -99,6 +115,10 @@ a:focus {
 
 #titlebar #windowOps li {
     display: inline;
+}
+
+.mac #titlebar #windowOps {
+	-webkit-transform: rotate(180deg);
 }
 
 #titlebar #contextMenuButton {
@@ -227,17 +247,26 @@ a:focus {
 	padding-bottom: 2px;
 }
 
-#bottom {
+.bottom {
 	position: absolute;
-	bottom: 23px;
+    bottom: 23px;
 	left: 0;
-	background #343434;
+	background: #343434;
 	border-top: 1px solid #1a1a1a;
 	width: 100%;
 	height: 22px;
 }
 
-#bottom .filters {
+#contents div.bottom {
+	position: absolute;
+}
+
+#post .bottom  {
+    z-index: -1;
+    border-top: none;
+}
+
+.bottom .filters {
 	padding: 3px 6px 3px 8px;
 }
 
@@ -255,7 +284,7 @@ a:focus {
 	content: ':';
 }
 
-#bottom .filters  ul {
+.bottom .filters  ul {
 	display: inline-block;
 	list-style: none;
 	margin: 0;
@@ -263,7 +292,7 @@ a:focus {
 	height: 16px;
 }
 
-#bottom .filters  ul li {
+.bottom .filters  ul li {
 	display: inline-block;
 	height: 16px;
 	width: 16px;
@@ -272,7 +301,7 @@ a:focus {
 	margin-right: 3px;
 }
 
-#bottom .filters  ul li a {
+.bottom .filters  ul li a {
 	display: inline-block;
 	height: 16px;
 	width: 16px;
@@ -280,17 +309,17 @@ a:focus {
 	opacity: 0.25;
 }
 
-#bottom .filters  ul li a.active {
+.filters  ul li a.active {
 	opacity: 0.75;
 }
 
-#bottom .filters  ul li a:hover,
-#bottom .filters  ul li a:active,
-#bottom .filters  ul li a:focus {
+.filters  ul li a:hover,
+.filters  ul li a:active,
+.filters  ul li a:focus {
 	opacity: 1;
 }
 
-#post-button {
+.bottom .post-button {
 	position: absolute;
 	right: 0;
 	bottom: 0;
@@ -304,14 +333,23 @@ a:focus {
 	background: #454545;
 }
 
-#post-button:hover,
-#post-button:active,
-#post-button:focus {
+#post .bottom .post-button,
+#post .bottom .post-button:hover,
+#post .bottom .post-button:active,
+#post .bottom .post-button:focus {
+    background: #225396;
+    color: #ececec;
+}
+
+.bottom .post-button:hover,
+.bottom .post-button:active,
+.bottom .post-button:focus {
 	color: #ececec;
 	background: #515151;
 }
 
-#scrollbar {
+.scrollbar {
+    z-index: 1;
 	cursor: pointer;
 	position: absolute;
 	font-size: 14px;
@@ -327,23 +365,145 @@ a:focus {
 	-webkit-box-shadow: -1px 3px 4px rgba(0,0,0,0.3);
 }
 
-#scrollbar:hover,
-#scrollbar:active,
-#scrollbar:focus {
+.scrollbar:hover,
+.scrollbar:active,
+.scrollbar:focus {
 	color: #fff;
 	background: #21559c;
 }
 
-#scrollbar span {
+.scrollbar span {
 	position: absolute;
 	left: 4px;
 	-webkit-transform:rotate(90deg);
 }
 
-#scrollbar .top {
+.scrollbar .up {
 	top: 0;
 }
 
-#scrollbar .bottom {
+.scrollbar .down {
 	bottom: 2px;
+}
+
+#contents ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#contents .entries > li {
+    position: relative;
+    -webkit-box-sizing: border-box;
+	width: 100%;
+	margin: 0;
+	padding: 12px 25px 4px 70px;
+	border-bottom: 1px solid #595959;
+	min-height: 68px;
+    font-size: 11px;
+    line-height: 1.3em;
+}
+
+#contents .entries > li.owner {
+	border-bottom-color: #21559c;
+}
+
+#contents .entries > li.unread {
+	background: #2e3e53;
+}
+
+#contents .entries > li:hover {
+	background: #3d3d3d;
+}
+
+#contents .entries > li.unread:hover {
+	background: #2a4568;
+}
+
+#contents .entries > li.mention .entry-contents {
+    color: #fff;
+}
+
+#contents .entries .actions {
+	display: none;
+    font-size: 19px;
+    line-height: 1.3em;
+    font-weight: bold;
+    position: absolute;
+    right: 26px;
+    bottom: 0;
+}
+
+#contents .entries .actions a {
+    color: #bdbdbd;
+}
+
+#contents .entries .actions a:hover,
+#contents .entries .actions a:active,
+#contents .entries .actions a:focus {
+    color: #fff;
+}
+
+#contents .entries .actions .opts  a{
+    position: relative;
+    top: 1px;
+}
+
+#contents .entries li:hover .actions {
+	display: block;
+}
+
+#contents .entries .actions li {
+	display: inline;
+}
+
+#contents .entries img {
+    float: left;
+    margin-top: 2px;
+    margin-left: -54px;
+    border: 1px solid #595959;
+}
+
+#contents .entries .owner img {
+    border-color: #21559c;
+}
+
+#contents .entries .entry-contents {
+    padding-bottom: 14px;
+}
+
+#contents .entries p {
+    margin: 0;
+    padding: 0;
+}
+
+#contents .entries .meta {
+    padding-right: 40px;
+    font-size: 10px;
+    line-height: 1.2em;
+}
+
+#post {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: #292727;
+    background: rgba(39,39,39,0.7);
+    -webkit-border-radius: 5px;
+    z-index: 2;
+}
+
+#post form {
+    height: 160px;
+    width: 100%;
+    position: absolute;
+    bottom: 33px;
+    z-index: 3;
+    background: #343434;
+    border: 1px solid #21559c;
+    border-left: none;
+    border-right: none;
+    overflow: hidden;
 }
