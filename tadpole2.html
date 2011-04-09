@@ -19,6 +19,18 @@
                     <li id="close"><a href="#close">x</a></li>
                 </ul>
             </div>
+            <div id="login">
+                <form id="login-form">
+                    <div class="wrap">
+                    <h3>Login</h3>
+                        <label for="username">Username</label>
+                        <input type="text" name="username" id="login-username" />
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="login-password" />
+                        <input type="submit" class="button submit" value="Login" />
+                    </div>
+                </form>
+            </div>
             <div id="post" style="display:none;">
                 <form id="post-form">
                     <h3>Update</h3>
@@ -28,12 +40,12 @@
                         <li class="photo"><a href="#post-photo">Photo</a></li>
                         <li class="video"><a href="#post-video">Video</a></li>
                     </ul>
-                    <input type="button" class="cancel" value="Cancel" />
-                    <input type="submit" class="submit" value="Submit" />
+                    <input type="button" class="button cancel" value="Cancel" />
+                    <input type="submit" class="button submit" value="Submit" />
                 </form>
                 <div class="bottom">
                     <div class="filters">
-                        <p class="title">Filter</p>
+                        <p class="title">Post To</p>
                         <ul>
                             <li class="twitter"><a href="#filter-twitter" class="active"><img src="img/services/twitter_16.png" /></a></li>
                             <li class="facebook"><a href="#filter-facebook" class="active"><img src="img/services/facebook_16.png" /></a></li>
@@ -43,70 +55,20 @@
                     <a href="#post" class="post-button" class="active">Post</a>
                 </div>
             </div>
-			<ul id="topnav">
+			<ul id="topnav" style="display: none;">
                 <li id="topnav-timeline"><a href="#timeline" class="active">Updates</a></li>
                 <li id="topnav-mentions"><a href="#mentions">For Me</a></li>
                 <li id="topnav-settings"><a href="#settings">Settings</a></li>
             </ul>
-            <div id="contents">
+            <div id="contents" style="display: none;">
                 <div id="timeline">
                     <a class="scrollbar"><span class="up">&lt;</span><span class="down">&gt;</span></a>
                     <ul class="entries">
-                        <li class="unread">
-                            <a href="#user" class="picture"><img src="img/nopic.png" title="Username [service]" /></a>
-                            <div class="entry-contents">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget enim erat. In hac habitasse platea dictumst. Sed facilisis, lacus ac laoreet mollis.</p>
-                            </div>
-                            <ul class="actions">
-                                <li class="reply"><a href="#reply" title="Reply">«</a></li>
-                                <li class="opts"><a href="#entry-menu" title="Options">+</a></li>
-                            </ul>
-                            <p class="meta"><span class="name">Name</span> <span class="service">[twitter: @handle]</span></p>
-                        </li>
-                        <li class="unread owner">
-                            <a href="#user" class="picture"><img src="img/nopic.png" title="Username [service]" /></a>
-                            <div class="entry-contents">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget enim erat. In hac habitasse platea dictumst. Sed facilisis, lacus ac laoreet mollis.</p>
-                            </div>
-                            <ul class="actions">
-                                <li class="reply"><a href="#reply" title="Reply">«</a></li>
-                                <li class="opts"><a href="#entry-menu" title="Options">+</a></li>
-                            </ul>
-                            <p class="meta"><span class="name">Name</span> <span class="service">[twitter: @handle]</span></p>
-                        </li>
-                        <li class="owner">
-                            <a href="#user" class="picture"><img src="img/nopic.png" title="Username [service]" /></a>
-                            <div class="entry-contents">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget enim erat. In hac habitasse platea dictumst. Sed facilisis, lacus ac laoreet mollis.</p>
-                            </div>
-                            <ul class="actions">
-                                <li class="reply"><a href="#reply" title="Reply">«</a></li>
-                                <li class="opts"><a href="#entry-menu" title="Options">+</a></li>
-                            </ul>
-                            <p class="meta"><span class="name">Name</span> <span class="service">[twitter: @handle]</span></p>
-                        </li>
-                        <li class="mention">
-                            <a href="#user" class="picture"><img src="img/nopic.png" title="Username [service]" /></a>
-                            <div class="entry-contents">
-                                <p><a href="#">@you</a> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget enim erat. In hac habitasse platea dictumst. Sed facilisis, lacus ac laoreet mollis.</p>
-                            </div>
-                            <ul class="actions">
-                                <li class="reply"><a href="#reply" title="Reply">«</a></li>
-                                <li class="opts"><a href="#entry-menu" title="Options">+</a></li>
-                            </ul>
-                            <p class="meta"><span class="name">This Is A Very Long Name Meant Just For Test Purposes</span> <span class="service">[twitter: @handle]</span></p>
-                        </li>
-                        <li>
-                            <a href="#user" class="picture"><img src="img/nopic.png" title="Username [service]" /></a>
-                            <div class="entry-contents">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas eget enim erat. In hac habitasse platea dictumst. Sed facilisis, lacus ac laoreet mollis.</p>
-                            </div>
-                            <ul class="actions">
-                                <li class="reply"><a href="#reply" title="Reply">«</a></li>
-                                <li class="opts"><a href="#entry-menu" title="Options">+</a></li>
-                            </ul>
-                            <p class="meta"><span class="name">Name</span> <span class="service">[twitter: @handle]</span></p>
-                        </li>
+                    </ul>
+                </div>
+                <div id="mentions">
+                    <a class="scrollbar"><span class="up">&lt;</span><span class="down">&gt;</span></a>
+                    <ul class="entries">
                     </ul>
                 </div>
                 <div class="bottom">
@@ -126,7 +88,7 @@
                 </div>
 			</div>
             <div id="statusbar">
-                <p id="status-info"><a href="#status">Idle ssadksjdksndnaksndakdnaksndaklsdlakdkandakndadnsakdjaskldnaklndakjsd</a></p>
+                <p id="status-info"><a href="#status">Idle</a></p>
                 <a href="#resize" id="resize-handle"><img src="img/resize-handle.png" /></a>
             </div>
         </div>

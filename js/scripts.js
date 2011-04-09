@@ -19,6 +19,26 @@ function togglePostForm() {
     }
 }
 
+function clearActive() {
+    $$('#topnav li a').each(function(item) { item.removeClass('active'); });
+}
+
+function moveTo(event) {
+    event.stop();
+    clearActive();
+    this.addClass('active');
+    var id = this.getProperty('href').substring(1);
+
+    switch(id) {
+        case 'timeline':
+            $('timeline').setStyle('margin-left',0);
+            break;
+        case 'mentions':
+            $('timeline').setStyle('margin-left', '-100%');
+            break;
+    }
+}
+
 window.addEvent('domready', function() {
     // Detect mac and invert the window controls
     if (air.Capabilities.os.substring(0,6) == "Mac OS") {
@@ -55,12 +75,16 @@ window.addEvent('domready', function() {
             window.nativeWindow.startResize();
             e.stop();
         });
+
+    $$('#topnav li a').each(function(item) {
+            item.addEvent('click', moveTo);
+        });
     
     $$('.post-button').addEvent('click', function(e) {
             togglePostForm();
             e.stop();
         });
-    
+
     window.nativeWindow.addEventListener('displayStateChange', function(e) {
             if (window.nativeWindow.displayState == "maximized") {
                 window.document.body.addClass("maximized");
